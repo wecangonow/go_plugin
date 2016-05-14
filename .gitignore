@@ -1,0 +1,7 @@
+*.conf
+.idea/*
+pkg
+bin/*
+src/sourcegraph.com/*
+src/gopkg.in/*
+src/9fans.net/*

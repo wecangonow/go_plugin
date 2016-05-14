@@ -1,0 +1,9 @@
+appname         = adapi
+httpport        = 8090
+runmode         = dev
+autorender      = false
+copyrequestbody = true
+EnableDocs      = true
+logpath         = logs
+access_control_allow_origin = *
+dbconnect       = root:123456@tcp(10.1.9.164:3307)/plugin

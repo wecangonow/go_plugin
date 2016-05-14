@@ -1,0 +1,15 @@
+2016/05/14 14:48:12 [api.go:59] [I] $s%!(EXTRA int=8090)
+2016/05/14 14:48:26 [api.go:59] [I] %!s(int=8090)
+2016/05/14 14:49:01 [api.go:59] [I] 8090
+2016/05/14 14:49:31 [api.go:59] [I] http port 8090
+2016/05/14 14:49:46 [api.go:58] [I] http port 8090
+2016/05/14 15:35:05 [api.go:54] [I] Country name is : 巴西
+2016/05/14 15:35:10 [api.go:54] [I] Country name is : 巴西
+2016/05/14 15:37:42 [api.go:54] [I] Country name is : 巴西
+2016/05/14 15:37:44 [api.go:54] [I] Country name is : 巴西
+2016/05/14 15:37:47 [api.go:54] [I] Country name is : 巴西
+2016/05/14 15:37:48 [api.go:54] [I] Country name is : 巴西
+2016/05/14 15:37:49 [api.go:54] [I] Country name is : 巴西
+2016/05/14 15:37:50 [api.go:54] [I] Country name is : 巴西
+2016/05/14 15:37:52 [api.go:54] [I] Country name is : 巴西
+2016/05/14 15:37:53 [api.go:54] [I] Country name is : 巴西
