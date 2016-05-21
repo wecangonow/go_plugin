@@ -9,9 +9,13 @@ import (
 var (
 	once      sync.Once
 	AppConfig Config
-	AdConfig  config.ConfigContainer
+	AdConfig  AdConf
 )
 
+type AdConf struct{
+
+	DeployLogic []interface{}
+}
 
 type Config struct {
 	Httpport                  int
@@ -23,6 +27,8 @@ type Config struct {
 	Logpath                   string
 	AccessControllAllowOrigin string
 	DbConnectstr              string
+	Cachetime                 int64
+	Fabricateplugin           string
 }
 
 func InitConfig() {
@@ -36,7 +42,15 @@ func initAllConfig() {
 		ELogger.Error("get json conf error:%s", err.Error())
 	}
 
-	AdConfig = cf
+	var ss []interface{}
+
+	if sp, err := cf.DIY("deploy_logic"); err != nil {
+		panic(err)
+	} else if m, ok := sp.([]interface{}); ok {
+		ss = m
+	}
+
+	AdConfig.DeployLogic = ss
 
 
 	cf, err = config.NewConfig("ini", "./conf/app.conf")
@@ -53,6 +67,8 @@ func initAllConfig() {
 	logpath         := cf.DefaultString("logpath", "")
 	access          := cf.DefaultString("access_control_allow_origin", "")
 	dbconn          := cf.DefaultString("dbconnect", "")
+	cache_time      := cf.DefaultInt64("cache_time",0)
+	plugin_appid    := cf.DefaultString("fabricate_plugin","")
 	AppConfig = Config{
 		Logpath                   : logpath,
 		Httpport                  : httpport,
@@ -62,6 +78,8 @@ func initAllConfig() {
 		Copyrequestbody           : copyrequestbody,
 		EnableDocs                : enabledocs,
 		AccessControllAllowOrigin : access,
-		DbConnectstr              :dbconn,
+		DbConnectstr              : dbconn,
+		Cachetime                 : cache_time,
+		Fabricateplugin           : plugin_appid,
 	}
 }

@@ -43,6 +43,13 @@ func GetPWhiteById(id int) (v *PWhite, err error) {
 	}
 	return nil, err
 }
+func GetMyAllPWhite() (list orm.ParamsList, err error) {
+
+	o := orm.NewOrm()
+	_, err = o.Raw("select web from p_white where status = ?",1).ValuesFlat(&list)
+
+	return list, err
+}
 
 // GetAllPWhite retrieves all PWhite matches certain condition. Returns empty list if
 // no records exist

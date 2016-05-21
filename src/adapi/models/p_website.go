@@ -44,6 +44,28 @@ func GetPWebsiteById(id int) (v *PWebsite, err error) {
 	return nil, err
 }
 
+func GetMyAllPWebsite() (list orm.ParamsList, err error) {
+
+	o := orm.NewOrm()
+	_, err = o.Raw("select web from p_website").ValuesFlat(&list)
+
+	return list, err
+}
+
+func GetPWebsitesByLikeWeb(web string) (v []*PWebsite, err error) {
+
+	o := orm.NewOrm()
+	_, err = o.Raw("select * from p_website where web like '%?%'", web).QueryRows(&v)
+
+	return v, err
+}
+func GetPWebsiteByWeb(web string) (v *PWebsite, err error) {
+
+	o := orm.NewOrm()
+	err = o.Raw("select * from p_website where web = ?", web).QueryRow(&v)
+
+	return v, err
+}
 // GetAllPWebsite retrieves all PWebsite matches certain condition. Returns empty list if
 // no records exist
 func GetAllPWebsite(query map[string]string, fields []string, sortby []string, order []string,

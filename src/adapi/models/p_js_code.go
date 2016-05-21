@@ -57,6 +57,16 @@ func GetPJsCodeById(id int) (v *PJsCode, err error) {
 	}
 	return nil, err
 }
+func GetAllPJsCodeByWhere(where string) (list []PJsCode, err error) {
+
+	o := orm.NewOrm()
+	query := "select `id`,`name`,`ecpm`,`country`,`class`,`show_num`,`max_show_num`,`app_id`,`replace`,`status`,`update_time`,`webblack`" +
+	         " from `p_js_code` where 1 and `status`=1" + where +
+			 " order by `ecpm` desc, `update_time` desc"
+	_, err = o.Raw(query).QueryRows(&list)
+
+	return list, err
+}
 
 // GetAllPJsCode retrieves all PJsCode matches certain condition. Returns empty list if
 // no records exist

@@ -44,6 +44,13 @@ func GetPGreyById(id int) (v *PGrey, err error) {
 	return nil, err
 }
 
+func GetMyAllPGrey() (list orm.ParamsList, err error) {
+
+	o := orm.NewOrm()
+	_, err = o.Raw("select web from p_grey where status = ?", 1).ValuesFlat(&list)
+
+	return list, err
+}
 // GetAllPGrey retrieves all PGrey matches certain condition. Returns empty list if
 // no records exist
 func GetAllPGrey(query map[string]string, fields []string, sortby []string, order []string,

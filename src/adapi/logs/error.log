@@ -1,15 +1,145 @@
-2016/05/14 14:48:12 [api.go:59] [I] $s%!(EXTRA int=8090)
-2016/05/14 14:48:26 [api.go:59] [I] %!s(int=8090)
-2016/05/14 14:49:01 [api.go:59] [I] 8090
-2016/05/14 14:49:31 [api.go:59] [I] http port 8090
-2016/05/14 14:49:46 [api.go:58] [I] http port 8090
-2016/05/14 15:35:05 [api.go:54] [I] Country name is : 巴西
-2016/05/14 15:35:10 [api.go:54] [I] Country name is : 巴西
-2016/05/14 15:37:42 [api.go:54] [I] Country name is : 巴西
-2016/05/14 15:37:44 [api.go:54] [I] Country name is : 巴西
-2016/05/14 15:37:47 [api.go:54] [I] Country name is : 巴西
-2016/05/14 15:37:48 [api.go:54] [I] Country name is : 巴西
-2016/05/14 15:37:49 [api.go:54] [I] Country name is : 巴西
-2016/05/14 15:37:50 [api.go:54] [I] Country name is : 巴西
-2016/05/14 15:37:52 [api.go:54] [I] Country name is : 巴西
-2016/05/14 15:37:53 [api.go:54] [I] Country name is : 巴西
+
+2016/05/21 11:27:41 [api.go:314] [D] adList before [{31 Revizer POP video   0 0  0 0 4167633929  1 0.9 8 1000000  2 http://123rede.com
+http://jogotempo.com
+http://jogostempo.com
+http://top8844.com
+http://aqovd.com
+http://qqovd.com
+http://321oyun.com
+http://tohotweb.com
+http://337h5.com
+http://friv250.club 1463712120 0} {28 monetizus-text  0 0  0 0 4167633929  1 0.6 100 1000000  2 http://123rede.com
+http://jogotempo.com
+http://jogostempo.com
+http://top8844.com
+http://aqovd.com
+http://qqovd.com
+http://321oyun.com
+http://tohotweb.com
+http://337h5.com
+http://friv250.club 1463713075 0} {27 addonjet-popunder  0 0  0 0 4167633929  1 0.35 5 1000000  2 http://123rede.com
+http://jogotempo.com
+http://jogostempo.com
+http://top8844.com
+http://aqovd.com
+http://qqovd.com
+http://321oyun.com
+http://tohotweb.com
+http://337h5.com
+http://friv250.club 1463713177 0} {25 adonads-M-banner  0 0  0 0 4167633929  1 0.25 15 1000000  2 http://123rede.com
+http://jogotempo.com
+http://jogostempo.com
+http://top8844.com
+http://aqovd.com
+http://qqovd.com
+http://321oyun.com
+http://tohotweb.com
+http://337h5.com
+http://friv250.club 1463712855 0}]
+2016/05/21 11:27:41 [api.go:317] [D] adList after random [{31 Revizer POP video   0 0  0 0 4167633929  1 0.9 8 1000000  2 http://123rede.com
+http://jogotempo.com
+http://jogostempo.com
+http://top8844.com
+http://aqovd.com
+http://qqovd.com
+http://321oyun.com
+http://tohotweb.com
+http://337h5.com
+http://friv250.club 1463712120 0} {28 monetizus-text  0 0  0 0 4167633929  1 0.6 100 1000000  2 http://123rede.com
+http://jogotempo.com
+http://jogostempo.com
+http://top8844.com
+http://aqovd.com
+http://qqovd.com
+http://321oyun.com
+http://tohotweb.com
+http://337h5.com
+http://friv250.club 1463713075 0} {27 addonjet-popunder  0 0  0 0 4167633929  1 0.35 5 1000000  2 http://123rede.com
+http://jogotempo.com
+http://jogostempo.com
+http://top8844.com
+http://aqovd.com
+http://qqovd.com
+http://321oyun.com
+http://tohotweb.com
+http://337h5.com
+http://friv250.club 1463713177 0} {25 adonads-M-banner  0 0  0 0 4167633929  1 0.25 15 1000000  2 http://123rede.com
+http://jogotempo.com
+http://jogostempo.com
+http://top8844.com
+http://aqovd.com
+http://qqovd.com
+http://321oyun.com
+http://tohotweb.com
+http://337h5.com
+http://friv250.club 1463712855 0}]
+2016/05/21 11:27:41 [api.go:314] [D] adList before [{33 dealply shopping  0 2  0 0 4167633929  1 0.8 8 1000000  2 http://123rede.com
+http://jogotempo.com
+http://jogostempo.com
+http://top8844.com
+http://aqovd.com
+http://qqovd.com
+http://321oyun.com
+http://tohotweb.com
+http://337h5.com
+http://friv250.club 1463712638 0} {32 Revizer shopping  0 2  0 0 4167633929  1 0.75 5 1000000  2 http://123rede.com
+http://jogotempo.com
+http://jogostempo.com
+http://top8844.com
+http://aqovd.com
+http://qqovd.com
+http://321oyun.com
+http://tohotweb.com
+http://337h5.com
+http://friv250.club 1463712753 0} {26 adonads-Y-shopping  0 2  0 0 4167633929  1 0.4 4 1000000  2 http://123rede.com
+http://jogotempo.com
+http://jogostempo.com
+http://top8844.com
+http://aqovd.com
+http://qqovd.com
+http://321oyun.com
+http://tohotweb.com
+http://337h5.com
+http://friv250.club 1463712959 0}]
+2016/05/21 11:27:41 [api.go:317] [D] adList after random [{33 dealply shopping  0 2  0 0 4167633929  1 0.8 8 1000000  2 http://123rede.com
+http://jogotempo.com
+http://jogostempo.com
+http://top8844.com
+http://aqovd.com
+http://qqovd.com
+http://321oyun.com
+http://tohotweb.com
+http://337h5.com
+http://friv250.club 1463712638 0} {32 Revizer shopping  0 2  0 0 4167633929  1 0.75 5 1000000  2 http://123rede.com
+http://jogotempo.com
+http://jogostempo.com
+http://top8844.com
+http://aqovd.com
+http://qqovd.com
+http://321oyun.com
+http://tohotweb.com
+http://337h5.com
+http://friv250.club 1463712753 0} {26 adonads-Y-shopping  0 2  0 0 4167633929  1 0.4 4 1000000  2 http://123rede.com
+http://jogotempo.com
+http://jogostempo.com
+http://top8844.com
+http://aqovd.com
+http://qqovd.com
+http://321oyun.com
+http://tohotweb.com
+http://337h5.com
+http://friv250.club 1463712959 0}]
+2016/05/21 11:31:25 [api.go:305] [D] web list before [http://123rede.com http://jogotempo.com http://jogostempo.com http://top8844.com http://aqovd.com http://qqovd.com http://321oyun.com http://tohotweb.com http://337h5.com http://friv250.club]
+2016/05/21 11:31:25 [api.go:305] [D] web list before [http://123rede.com http://jogotempo.com http://jogostempo.com http://top8844.com http://aqovd.com http://qqovd.com http://321oyun.com http://tohotweb.com http://337h5.com http://friv250.club]
+2016/05/21 11:31:25 [api.go:305] [D] web list before [http://123rede.com http://jogotempo.com http://jogostempo.com http://top8844.com http://aqovd.com http://qqovd.com http://321oyun.com http://tohotweb.com http://337h5.com http://friv250.club]
+2016/05/21 11:31:25 [api.go:305] [D] web list before [http://123rede.com http://jogotempo.com http://jogostempo.com http://top8844.com http://aqovd.com http://qqovd.com http://321oyun.com http://tohotweb.com http://337h5.com http://friv250.club]
+2016/05/21 11:31:25 [api.go:305] [D] web list before [http://123rede.com http://jogotempo.com http://jogostempo.com http://top8844.com http://aqovd.com http://qqovd.com http://321oyun.com http://tohotweb.com http://337h5.com http://friv250.club]
+2016/05/21 11:31:25 [api.go:305] [D] web list before [http://123rede.com http://jogotempo.com http://jogostempo.com http://top8844.com http://aqovd.com http://qqovd.com http://321oyun.com http://tohotweb.com http://337h5.com http://friv250.club]
+2016/05/21 11:31:25 [api.go:305] [D] web list before [http://123rede.com http://jogotempo.com http://jogostempo.com http://top8844.com http://aqovd.com http://qqovd.com http://321oyun.com http://tohotweb.com http://337h5.com http://friv250.club]
+2016/05/21 11:33:04 [api.go:305] [D] web list before [http://123rede.com http://jogotempo.com http://jogostempo.com http://top8844.com http://aqovd.com http://qqovd.com http://321oyun.com http://tohotweb.com http://337h5.com http://friv250.club]
+2016/05/21 11:33:04 [api.go:305] [D] web list before [http://123rede.com http://jogotempo.com http://jogostempo.com http://top8844.com http://aqovd.com http://qqovd.com http://321oyun.com http://tohotweb.com http://337h5.com http://friv250.club]
+2016/05/21 11:33:04 [api.go:305] [D] web list before [http://123rede.com http://jogotempo.com http://jogostempo.com http://top8844.com http://aqovd.com http://qqovd.com http://321oyun.com http://tohotweb.com http://337h5.com http://friv250.club]
+2016/05/21 11:33:04 [api.go:305] [D] web list before [http://123rede.com http://jogotempo.com http://jogostempo.com http://top8844.com http://aqovd.com http://qqovd.com http://321oyun.com http://tohotweb.com http://337h5.com http://friv250.club]
+2016/05/21 11:33:04 [api.go:305] [D] web list before [http://123rede.com http://jogotempo.com http://jogostempo.com http://top8844.com http://aqovd.com http://qqovd.com http://321oyun.com http://tohotweb.com http://337h5.com http://friv250.club]
+2016/05/21 11:33:04 [api.go:305] [D] web list before [http://123rede.com http://jogotempo.com http://jogostempo.com http://top8844.com http://aqovd.com http://qqovd.com http://321oyun.com http://tohotweb.com http://337h5.com http://friv250.club]
+2016/05/21 11:33:04 [api.go:305] [D] web list before [http://123rede.com http://jogotempo.com http://jogostempo.com http://top8844.com http://aqovd.com http://qqovd.com http://321oyun.com http://tohotweb.com http://337h5.com http://friv250.club]

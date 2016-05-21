@@ -23,6 +23,11 @@ func (t *PConfig) TableName() string {
 func init() {
 	orm.RegisterModel(new(PConfig))
 }
+func GetPConfigByName(name string) (v *PConfig, err error) {
+	o := orm.NewOrm()
+	err = o.Raw("select * from p_config where config_name = ?", name).QueryRow(&v)
+	return v, err
+}
 
 // AddPConfig insert a new PConfig into database and returns
 // last inserted Id on success.

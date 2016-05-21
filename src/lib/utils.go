@@ -5,6 +5,8 @@ import(
 	"log"
 	"net"
 	"github.com/astaxie/beego/context"
+	"math/rand"
+	"time"
 )
 
 
@@ -30,4 +32,9 @@ func SetHeader(ctx *context.Context) {
 	ctx.Output.Header("Access-Control-Allow-Origin",AppConfig.AccessControllAllowOrigin)
 	ctx.Output.Header("Access-Control-Allow-Methods","POST, GET, OPTIONS")
 	ctx.Output.Header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept")
+}
+
+func Random(min, max int) int {
+	rand.Seed(time.Now().Unix())
+	return rand.Intn(max - min) + min
 }

@@ -4,6 +4,8 @@ import(
 	"testing"
 	"github.com/astaxie/beego/config"
 	"os"
+	"math/rand"
+	"fmt"
 )
 
 func TestJson(t *testing.T) {
@@ -138,25 +140,42 @@ func TestJson(t *testing.T) {
 	}
 }
 
-func Test_IpToISOCode(t *testing.T) {
 
-	db_path := "/Users/og/gocode/learning/src/adapi/static/GeoLite2-City.mmdb"
+func random(min, max int) int {
 
-	ips_isocode_map := map[string]string{
-		"GB":"81.2.69.142",
-		"CN":"124.205.66.66",
-		"BR":"54.94.221.179",
-		"US":"4.94.221.179",
-		"NG":"41.184.155.124",
-	}
+	return rand.Intn(max - min) + min
+}
+func Test_randrange(t *testing.T) {
+	//rand.Seed(time.Now().Unix())
 
-	for iso_code, ip_str := range ips_isocode_map {
-		true_code, _ := IpToISOCode(ip_str, db_path)
-		if iso_code != true_code {
-			t.Error("not pass")
-			t.Log(ip_str + ": " + true_code)
+	for i := 1; i < 100; i++ {
+		myrand := random(1,6)
+
+		if 1 <= myrand && myrand <= 6 {
+			t.Log("right")
 		} else {
-			t.Log("pass:" + iso_code)
+			t.Error("wrong")
 		}
 	}
+
+}
+
+func Test_adCount(t *testing.T) {
+	countInfo := AdCountIndex{
+		Uuid:"adbddsdsd",
+		Ad_type:1,
+		Ad_id:12 }
+	num := GetAdCount(countInfo, "user")
+	num2 := GetAdCount(countInfo, "ad")
+	fmt.Println(" num is ", num)
+	fmt.Println(" num2 is ", num)
+	IncrementUserAdCountByOne(countInfo)
+	IncrementUserAdCountByOne(countInfo)
+	IncrementUserAdCountByOne(countInfo)
+	IncrementUserAdCountByOne(countInfo)
+	num = GetAdCount(countInfo, "user")
+	num2 = GetAdCount(countInfo, "ad")
+
+	fmt.Println(" num is ", num)
+	fmt.Println(" num2 is ", num2)
 }
