@@ -4,7 +4,6 @@ import (
 	"github.com/astaxie/beego/cache"
 	"strconv"
 	"time"
-	"fmt"
 )
 
 var (
@@ -77,6 +76,5 @@ func generateCacheKey(adInfo AdCountIndex, keyType string) string {
 		ret = strconv.Itoa(adInfo.Ad_id) + "-" + strconv.Itoa(adInfo.Ad_type) + "-" + time.Now().Format("2006-01-02")
 	}
 
-	fmt.Println(ret)
 	return ret
 }

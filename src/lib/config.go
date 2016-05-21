@@ -29,6 +29,8 @@ type Config struct {
 	DbConnectstr              string
 	Cachetime                 int64
 	Fabricateplugin           string
+	WebUrl                    string
+	JsUrl                     string
 }
 
 func InitConfig() {
@@ -69,6 +71,8 @@ func initAllConfig() {
 	dbconn          := cf.DefaultString("dbconnect", "")
 	cache_time      := cf.DefaultInt64("cache_time",0)
 	plugin_appid    := cf.DefaultString("fabricate_plugin","")
+	weburl          := cf.DefaultString("weburl","")
+	jsurl           := cf.DefaultString("jsurl","")
 	AppConfig = Config{
 		Logpath                   : logpath,
 		Httpport                  : httpport,
@@ -81,5 +85,7 @@ func initAllConfig() {
 		DbConnectstr              : dbconn,
 		Cachetime                 : cache_time,
 		Fabricateplugin           : plugin_appid,
+		WebUrl                    : weburl,
+		JsUrl                     : jsurl,
 	}
 }

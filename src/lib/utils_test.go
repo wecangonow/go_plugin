@@ -4,8 +4,8 @@ import(
 	"testing"
 	"github.com/astaxie/beego/config"
 	"os"
-	"math/rand"
 	"fmt"
+	"strings"
 )
 
 func TestJson(t *testing.T) {
@@ -141,41 +141,32 @@ func TestJson(t *testing.T) {
 }
 
 
-func random(min, max int) int {
 
-	return rand.Intn(max - min) + min
-}
-func Test_randrange(t *testing.T) {
-	//rand.Seed(time.Now().Unix())
+func Test_strReplace(t *testing.T) {
+	web := "http://163.com"
 
-	for i := 1; i < 100; i++ {
-		myrand := random(1,6)
+	newweb := strings.Replace(web, "http://", "", -1)
 
-		if 1 <= myrand && myrand <= 6 {
-			t.Log("right")
-		} else {
-			t.Error("wrong")
-		}
-	}
-
+	fmt.Println("old web is ", web)
+	fmt.Println("new web is ", newweb)
 }
 
-func Test_adCount(t *testing.T) {
-	countInfo := AdCountIndex{
-		Uuid:"adbddsdsd",
-		Ad_type:1,
-		Ad_id:12 }
-	num := GetAdCount(countInfo, "user")
-	num2 := GetAdCount(countInfo, "ad")
-	fmt.Println(" num is ", num)
-	fmt.Println(" num2 is ", num)
-	IncrementUserAdCountByOne(countInfo)
-	IncrementUserAdCountByOne(countInfo)
-	IncrementUserAdCountByOne(countInfo)
-	IncrementUserAdCountByOne(countInfo)
-	num = GetAdCount(countInfo, "user")
-	num2 = GetAdCount(countInfo, "ad")
-
-	fmt.Println(" num is ", num)
-	fmt.Println(" num2 is ", num2)
-}
+//func Test_adCount(t *testing.T) {
+//	countInfo := AdCountIndex{
+//		Uuid:"adbddsdsd",
+//		Ad_type:1,
+//		Ad_id:12 }
+//	num := GetAdCount(countInfo, "user")
+//	num2 := GetAdCount(countInfo, "ad")
+//	fmt.Println(" num is ", num)
+//	fmt.Println(" num2 is ", num)
+//	IncrementUserAdCountByOne(countInfo)
+//	IncrementUserAdCountByOne(countInfo)
+//	IncrementUserAdCountByOne(countInfo)
+//	IncrementUserAdCountByOne(countInfo)
+//	num = GetAdCount(countInfo, "user")
+//	num2 = GetAdCount(countInfo, "ad")
+//
+//	fmt.Println(" num is ", num)
+//	fmt.Println(" num2 is ", num2)
+//}

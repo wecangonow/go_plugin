@@ -10,6 +10,7 @@ import (
 	"strconv"
 	"sort"
 	"math/rand"
+	"errors"
 )
 
 type ApiController struct {
@@ -29,8 +30,6 @@ type AdRequest struct {
 }
 
 func (u *ApiController) Get() {
-
-
 	adReq    := AdRequest{}
 	size     := u.GetString("size")
 	count,_  := u.GetInt("count")
@@ -41,6 +40,7 @@ func (u *ApiController) Get() {
 	repeat,_ := u.GetInt("repeat")
 	times,_  := u.GetInt("times")
 	jsType,_ := u.GetInt("jsAdType",0)
+	web = strings.Replace(web, "http://", "", -1)
 	adReq.Appid    = appid
 	adReq.Count    = count
 	adReq.Repeat   = repeat
@@ -122,6 +122,7 @@ func getVirtualPluginAds(adRequest AdRequest, countryCode string) lib.Response {
 		lib.DataCache.Cache.Put("whiteLists", whiteLists, lib.AppConfig.Cachetime)
 	}
 	for _, white := range whiteLists.(orm.ParamsList) {
+		white = strings.Replace(white.(string), "http://", "", -1)
 		if white == web || strings.Contains(web, "." + white.(string)) {
 			response.Data = ""
 			response.Msg  = "success"
@@ -141,6 +142,7 @@ func getVirtualPluginAds(adRequest AdRequest, countryCode string) lib.Response {
 
 	var webmanageList []*models.PWebsite
 	for _, website := range websiteLists.(orm.ParamsList) {
+		website = strings.Replace(website.(string), "http://", "", -1)
 		if website == web  {
 			website, _ := models.GetPWebsiteByWeb(web)
 			webmanageList = append(webmanageList, website)
@@ -169,6 +171,7 @@ func getVirtualPluginAds(adRequest AdRequest, countryCode string) lib.Response {
 		lib.DataCache.Cache.Put("blackLists", blackLists, lib.AppConfig.Cachetime)
 	}
 	for _, black := range blackLists.(orm.ParamsList) {
+		black = strings.Replace(black.(string), "http://", "", -1)
 		if black == web || strings.Contains(web, "." + black.(string)) {
 			return getAdData(adRequest, countryCode, class_slice)
 		}
@@ -185,8 +188,6 @@ func getVirtualPluginAds(adRequest AdRequest, countryCode string) lib.Response {
 		lib.DataCache.Cache.Put("configPercent", configPercent, lib.AppConfig.Cachetime)
 	}
 
-	//lib.ELogger.Info("myrand is %v", myrand)
-	//lib.ELogger.Info("percent is %v", configPercent)
 
 	config_str := configPercent.(*models.PConfig).ConfigValue
 	config_int, _ := strconv.ParseInt(config_str, 10, 32)
@@ -206,11 +207,25 @@ func getVirtualPluginAds(adRequest AdRequest, countryCode string) lib.Response {
 
 
 func getAdData(adReuest AdRequest, countryCode string, class_slice []int) lib.Response {
-	response := lib.Response{}
-	 response.Data = deployLogic(adReuest, 2, countryCode, class_slice)
+	response       := lib.Response{}
 	//获取js广告
 	if adReuest.Times == 1 {
-		_ = getJsAdList(adReuest, countryCode, class_slice)
+		jsAd, err := getJsAdList(adReuest, countryCode, class_slice)
+		if err != nil {
+			lib.ELogger.Info("Client get js ad error: %v", err.Error())
+		} else {
+			jsAdRes := lib.JsAdRes{}
+			url := "//" + lib.AppConfig.WebUrl + lib.AppConfig.JsUrl + strconv.Itoa(jsAd.Id) + ".js?time" + strconv.Itoa(jsAd.UpdateTime)
+			jsAdRes.Url = url
+			jsAdRes.Ad_type = 1
+			jsAdRes.Ad_id = jsAd.Id
+			jsAdRes.Ad_name = jsAd.Name
+			jsAdRes.Ad_sort = jsAd.Class
+			jsAdRes.Ecpm = jsAd.Ecpm
+			jsAdRes.Replace = jsAd.Replace
+			response.Data = jsAdRes
+		}
+
 	}
 	if adReuest.JsType == 2 || adReuest.JsType == 0 {
 	}
@@ -266,9 +281,9 @@ func getAdData(adReuest AdRequest, countryCode string, class_slice []int) lib.Re
 }
 
 
-func getJsAdList(adReuest AdRequest, countryCode string, class_slice []int) string {
+func getJsAdList(adReuest AdRequest, countryCode string, class_slice []int) (models.PJsCode, error) {
 	deploy_logic := lib.AdConfig.DeployLogic
-
+	ret := models.PJsCode{}
 	for _, v := range deploy_logic {
 		country := countryCode + "0"
 		class   := ""
@@ -304,6 +319,7 @@ func getJsAdList(adReuest AdRequest, countryCode string, class_slice []int) stri
 				webBlackSlice := strings.Split(webBlackStr,"\r\n")
 				if len(webBlackSlice) > 0 {
 					for _, web := range webBlackSlice {
+						web = strings.Replace(web, "http://", "", -1)
 						if adReuest.Web == web || strings.Contains(adReuest.Web, "." + web) {
 							adList = append(adList.([]models.PJsCode)[:k], adList.([]models.PJsCode)[k+1:]...)
 						}
@@ -311,18 +327,23 @@ func getJsAdList(adReuest AdRequest, countryCode string, class_slice []int) stri
 				}
 			}
 		}
-		//lib.ELogger.Debug("adList before %v", adList)
 		adList = randomByEcpm(adList.([]models.PJsCode), nil)
-		//lib.ELogger.Debug("adList len %v", len(adList.([]models.PJsCode)))
-		//lib.ELogger.Debug("adList after random %v", adList)
 		adList = checkAdShowTimes(adReuest, adList.([]models.PJsCode), nil, 1)
-		//lib.ELogger.Debug("key is %v", key)
+		if adList.(models.PJsCode).AppId != "" {
+			ret = adList.(models.PJsCode)
+			lib.ELogger.Debug("final js ad  is %v", adList)
+			return ret, nil
+		}
+		//lib.ELogger.Debug("adList len %v", len(adList.([]models.PJsCode)))
+		//lib.ELogger.Debug("adList before %v", adList)
+		//lib.ELogger.Debug("adList after random %v", adList)
 		//lib.ELogger.Debug("web is %v", adReuest.Web)
 		//lib.ELogger.Debug("class is %v", class)
 		//lib.ELogger.Debug("country is %v", country)
 		//lib.ELogger.Debug("where is %v", where)
 	}
-	return ""
+	err := errors.New("proper js ad not found")
+	return ret, err
 }
 func randomByEcpm(jsAdList []models.PJsCode, deployAdList []models.PAdList) interface{} {
 
@@ -401,17 +422,39 @@ func randomByEcpm(jsAdList []models.PJsCode, deployAdList []models.PAdList) inte
 	return ""
 }
 func checkAdShowTimes(adRequest AdRequest, jsAdList []models.PJsCode, deployAdList []models.PAdList, adType int) interface{} {
-	//uuid := adRequest.Uid
+	uuid := adRequest.Uid
 	if adType == 2 {
 
 	}
 
+	ret := oneAdCheck(jsAdList, uuid, 1)
 
-	return ""
+	return ret
 }
-//func oneAdCheck(jsAdList []models.PJsCode, uuid string, adType int) models.PJsCode {
-//
-//}
+func oneAdCheck(jsAdList []models.PJsCode, uuid string, adType int) models.PJsCode {
+	if len(jsAdList) > 0 {
+		for _, v := range jsAdList {
+			countIndex := lib.AdCountIndex{}
+			countIndex.Uuid = uuid
+			countIndex.Ad_id = v.Id
+			countIndex.Ad_type = adType
+			ad_num      := lib.GetAdCount(countIndex, "ad")
+			user_ad_num := lib.GetAdCount(countIndex, "user")
+			if ad_num < v.MaxShowNum {
+				if user_ad_num < v.ShowNum {
+					return v
+				}
+			}
+			lib.ELogger.Debug("ad count index %v", countIndex)
+			lib.ELogger.Debug("ad num %v", ad_num)
+			lib.ELogger.Debug("user_ad num %v", user_ad_num)
+		}
+
+	}
+
+	return models.PJsCode{}
+
+}
 
 func getDeployAdList(adReuest AdRequest, countryCode string, class_slice []int) {
 
