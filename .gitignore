@@ -5,3 +5,5 @@ bin/*
 src/sourcegraph.com/*
 src/gopkg.in/*
 src/9fans.net/*
+src/adapi/adapi
+src/adapi/logs/*.log
