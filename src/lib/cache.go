@@ -41,7 +41,7 @@ func GetAdCount(adInfo AdCountIndex, keyType string) int {
 	}
 	max_show_num := DataCache.Cache.Get(key)
 	if max_show_num == nil {
-		DataCache.Cache.Put(key, 0, AppConfig.Cachetime)
+		DataCache.Cache.Put(key, 0, AppConfig.CountCachetime)
 		return ret
 	}
 
@@ -54,7 +54,7 @@ func incrementAdCountByOne(adInfo AdCountIndex) {
 	key := generateCacheKey(adInfo, "ad")
 	err := DataCache.Cache.Incr(key)
 	if err != nil {
-		DataCache.Cache.Put(key, 0, AppConfig.Cachetime)
+		DataCache.Cache.Put(key, 0, AppConfig.CountCachetime)
 	}
 }
 
@@ -62,7 +62,7 @@ func IncrementUserAdCountByOne(adInfo AdCountIndex) {
 	key := generateCacheKey(adInfo, "user")
 	err := DataCache.Cache.Incr(key)
 	if err != nil {
-		DataCache.Cache.Put(key, 0, AppConfig.Cachetime)
+		DataCache.Cache.Put(key, 0, AppConfig.CountCachetime)
 	} else {
 		incrementAdCountByOne(adInfo)
 	}

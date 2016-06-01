@@ -1,0 +1,39 @@
+panic: runtime error: invalid memory address or nil pointer dereference [recovered]
+	panic: runtime error: invalid memory address or nil pointer dereference
+[signal 0xb code=0x1 addr=0x8 pc=0x1858bc]
+
+goroutine 7 [running]:
+testing.tRunner.func1(0xc820080480)
+	/usr/local/go/src/testing/testing.go:450 +0x171
+github.com/astaxie/beego/logs.(*BeeLogger).Error(0x0, 0x580b00, 0x16, 0xc82003dd50, 0x1, 0x1)
+	/Users/og/gocode/learning/src/github.com/astaxie/beego/logs/log.go:251 +0x1c
+lib.initAllConfig()
+	/Users/og/gocode/learning/src/lib/config.go:45 +0x1ad
+sync.(*Once).Do(0x7b0890, 0x600700)
+	/usr/local/go/src/sync/once.go:44 +0xe4
+lib.InitConfig()
+	/Users/og/gocode/learning/src/lib/config.go:38 +0x2f
+lib.Test_config(0xc820080480)
+	/Users/og/gocode/learning/src/lib/utils_test.go:146 +0x24
+testing.tRunner(0xc820080480, 0x780218)
+	/usr/local/go/src/testing/testing.go:456 +0x98
+created by testing.RunTests
+	/usr/local/go/src/testing/testing.go:561 +0x86d
+
+goroutine 1 [chan receive]:
+testing.RunTests(0x600708, 0x780200, 0x2, 0x2, 0x10bf01)
+	/usr/local/go/src/testing/testing.go:562 +0x8ad
+testing.(*M).Run(0xc82004def8, 0x529080)
+	/usr/local/go/src/testing/testing.go:494 +0x70
+main.main()
+	lib/_test/_testmain.go:56 +0x116
+
+goroutine 17 [syscall, locked to thread]:
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_amd64.s:1696 +0x1
+
+goroutine 5 [chan receive]:
+github.com/astaxie/beego/cache.(*MemoryCache).vaccuum(0xc820014b10)
+	/Users/og/gocode/learning/src/github.com/astaxie/beego/cache/memory.go:211 +0x71
+created by github.com/astaxie/beego/cache.(*MemoryCache).StartAndGC
+	/Users/og/gocode/learning/src/github.com/astaxie/beego/cache/memory.go:201 +0x3aa

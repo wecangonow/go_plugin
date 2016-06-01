@@ -5,7 +5,6 @@ import(
 	"github.com/astaxie/beego/config"
 	"os"
 	"fmt"
-	"strings"
 )
 
 func TestJson(t *testing.T) {
@@ -142,13 +141,11 @@ func TestJson(t *testing.T) {
 
 
 
-func Test_strReplace(t *testing.T) {
-	web := "http://163.com"
+func Test_config(t *testing.T) {
 
-	newweb := strings.Replace(web, "http://", "", -1)
-
-	fmt.Println("old web is ", web)
-	fmt.Println("new web is ", newweb)
+	InitConfig()
+	size := AdConfig.Size
+	fmt.Println("size is ", size)
 }
 
 //func Test_adCount(t *testing.T) {

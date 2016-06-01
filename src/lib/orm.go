@@ -13,5 +13,5 @@ var (
 func InitOrm() {
 	orm.RegisterDataBase("default", "mysql", AppConfig.DbConnectstr, 30)
 	O = orm.NewOrm()
-	orm.Debug = true
+	//orm.Debug = true
 }

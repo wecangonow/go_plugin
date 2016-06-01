@@ -1,0 +1,39 @@
+19.54s of 20.03s total (97.55%)
+Dropped 86 nodes (cum <= 0.10s)
+      flat  flat%   sum%        cum   cum%
+    17.73s 88.52% 88.52%     17.73s 88.52%  runtime.mach_semaphore_timedwait
+     1.15s  5.74% 94.26%      1.15s  5.74%  runtime.mach_semaphore_wait
+     0.43s  2.15% 96.41%      0.43s  2.15%  runtime.kevent
+     0.10s   0.5% 96.90%      0.11s  0.55%  strings.Count
+     0.07s  0.35% 97.25%      0.23s  1.15%  runtime.scanobject
+     0.03s  0.15% 97.40%      0.12s   0.6%  runtime.greyobject
+     0.02s   0.1% 97.50%     18.97s 94.71%  runtime.systemstack
+     0.01s  0.05% 97.55%      0.36s  1.80%  adapi/controllers.getVirtualPluginAds
+         0     0% 97.55%      0.37s  1.85%  adapi/controllers.(*CallAdController).Get
+         0     0% 97.55%      0.36s  1.80%  adapi/controllers.getAd
+         0     0% 97.55%      0.17s  0.85%  adapi/controllers.getAdData
+         0     0% 97.55%      0.37s  1.85%  github.com/astaxie/beego.(*ControllerRegistor).ServeHTTP
+         0     0% 97.55%      0.37s  1.85%  net/http.(*conn).serve
+         0     0% 97.55%      0.37s  1.85%  net/http.serverHandler.ServeHTTP
+         0     0% 97.55%      0.11s  0.55%  runtime.convT2E
+         0     0% 97.55%      1.53s  7.64%  runtime.findrunnable
+         0     0% 97.55%      0.27s  1.35%  runtime.gcBgMarkWorker
+         0     0% 97.55%      0.12s   0.6%  runtime.gcDrain
+         0     0% 97.55%      0.15s  0.75%  runtime.gcDrainUntilPreempt
+         0     0% 97.55%     18.41s 91.91%  runtime.goexit
+         0     0% 97.55%      0.27s  1.35%  runtime.goexit0
+         0     0% 97.55%      0.54s  2.70%  runtime.goschedImpl
+         0     0% 97.55%      0.49s  2.45%  runtime.gosched_m
+         0     0% 97.55%      1.54s  7.69%  runtime.mcall
+         0     0% 97.55%      0.43s  2.15%  runtime.netpoll
+         0     0% 97.55%      1.15s  5.74%  runtime.notesleep
+         0     0% 97.55%     17.74s 88.57%  runtime.notetsleep_internal
+         0     0% 97.55%     17.74s 88.57%  runtime.notetsleepg
+         0     0% 97.55%      0.78s  3.89%  runtime.park_m
+         0     0% 97.55%      1.59s  7.94%  runtime.schedule
+         0     0% 97.55%     18.89s 94.31%  runtime.semasleep
+         0     0% 97.55%     18.89s 94.31%  runtime.semasleep.func1
+         0     0% 97.55%     18.89s 94.31%  runtime.semasleep1
+         0     0% 97.55%      1.15s  5.74%  runtime.stopm
+         0     0% 97.55%     17.74s 88.57%  runtime.timerproc
+         0     0% 97.55%      0.11s  0.55%  strings.Replace

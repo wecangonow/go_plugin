@@ -8,6 +8,7 @@ logpath         = logs
 access_control_allow_origin = *
 dbconnect       = root:123456@tcp(10.1.9.164:3307)/plugin
 cache_time      = 60
+count_cache_time = 86400
 fabricate_plugin= 4167633929
 weburl          = up.filmkaynagi.com
 jsurl           = /js/

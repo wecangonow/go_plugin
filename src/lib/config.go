@@ -15,6 +15,7 @@ var (
 type AdConf struct{
 
 	DeployLogic []interface{}
+	Size        map[string]interface{}
 }
 
 type Config struct {
@@ -28,6 +29,7 @@ type Config struct {
 	AccessControllAllowOrigin string
 	DbConnectstr              string
 	Cachetime                 int64
+	CountCachetime            int64
 	Fabricateplugin           string
 	WebUrl                    string
 	JsUrl                     string
@@ -45,14 +47,21 @@ func initAllConfig() {
 	}
 
 	var ss []interface{}
+	var size map[string]interface{}
 
 	if sp, err := cf.DIY("deploy_logic"); err != nil {
 		panic(err)
 	} else if m, ok := sp.([]interface{}); ok {
 		ss = m
 	}
+	if sp2, err2 := cf.DIY("size"); err2 != nil {
+		ELogger.Error("get size conf err is :", err2)
+	} else {
+		size = sp2.(map[string]interface{})
+	}
 
 	AdConfig.DeployLogic = ss
+	AdConfig.Size = size
 
 
 	cf, err = config.NewConfig("ini", "./conf/app.conf")
@@ -70,6 +79,7 @@ func initAllConfig() {
 	access          := cf.DefaultString("access_control_allow_origin", "")
 	dbconn          := cf.DefaultString("dbconnect", "")
 	cache_time      := cf.DefaultInt64("cache_time",0)
+	countcache_time := cf.DefaultInt64("count_cache_time",0)
 	plugin_appid    := cf.DefaultString("fabricate_plugin","")
 	weburl          := cf.DefaultString("weburl","")
 	jsurl           := cf.DefaultString("jsurl","")
@@ -84,6 +94,7 @@ func initAllConfig() {
 		AccessControllAllowOrigin : access,
 		DbConnectstr              : dbconn,
 		Cachetime                 : cache_time,
+		CountCachetime            : countcache_time,
 		Fabricateplugin           : plugin_appid,
 		WebUrl                    : weburl,
 		JsUrl                     : jsurl,

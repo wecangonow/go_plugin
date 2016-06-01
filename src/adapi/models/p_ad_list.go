@@ -68,6 +68,17 @@ func GetPAdListById(id int) (v *PAdList, err error) {
 	return nil, err
 }
 
+func GetAllPAdListByWhere(where string) (list []PAdList, err error) {
+
+	o := orm.NewOrm()
+	query := "select `id`,`name`,`size`,`web`,`country`,`class`,`show_num`,`max_show_num`,`weight`,`replace`,`ecpm`,`update_time`,`static_url`,`webblack`" +
+	" from `p_ad_list` where 1 and `replace`=3 and `status`=1" + where +
+	" order by `ecpm` desc, `update_time` desc"
+	_, err = o.Raw(query).QueryRows(&list)
+
+	return list, err
+}
+
 // GetAllPAdList retrieves all PAdList matches certain condition. Returns empty list if
 // no records exist
 func GetAllPAdList(query map[string]string, fields []string, sortby []string, order []string,
